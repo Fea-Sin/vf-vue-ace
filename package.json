@@ -6,19 +6,26 @@
   "scripts": {
     "test": "echo \"hello test\" ",
     "prepare": "husky install",
-    "prettier": "npx prettier --write --config .prettierrc.js src/**/*"
+    "prettier": "npx prettier --write --config .prettierrc.js src/**/*",
+    "lintfix": "eslint --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
+    "eslint": "^7.26.0",
+    "eslint-plugin-vue": "^7.9.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "typescript": "4.1.5"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
-      "prettier --write"
+      "prettier --write",
+      "eslint"
     ]
   }
 }
