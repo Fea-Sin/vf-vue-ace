@@ -5,19 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"hello test\" ",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier": "npx prettier --write --config .prettierrc.js src/**/*"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "husky": "^6.0.0",
-    "lint-staged": "^11.0.0"
+    "lint-staged": "^11.0.0",
+    "prettier": "2.2.1"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   }
 }
