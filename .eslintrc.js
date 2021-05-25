@@ -4,10 +4,11 @@ module.exports = {
     node: true,
   },
   extends: [
+    "plugin:vue/base",
     "eslint:recommended",
-    "plugin:vue/essential",
     "plugin:@typescript-eslint/recommended",
   ],
+  parser: "vue-eslint-parser",
   parserOptions: {
     ecmaVersion: 2020,
     parser: "@typescript-eslint/parser",
@@ -17,5 +18,6 @@ module.exports = {
   rules: {
     semi: ["error", "always"],
     quotes: ["error", "double"],
+    "@typescript-eslint/no-var-requires": "off",
   },
 };
