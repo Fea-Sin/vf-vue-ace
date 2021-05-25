@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     "plugin:vue/base",
+    "plugin:vue/essential",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
   ],
@@ -19,5 +20,6 @@ module.exports = {
     semi: ["error", "always"],
     quotes: ["error", "double"],
     "@typescript-eslint/no-var-requires": "off",
+    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
   },
 };
