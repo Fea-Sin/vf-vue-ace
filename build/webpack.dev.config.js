@@ -23,6 +23,8 @@ module.exports = merge(webpackBaseConfig, {
     historyApiFallback: true,
     open: true,
     port: 5090,
+    overlay: true,
+    stats: "errors-only",
   },
   plugins: [
     new webpack.DefinePlugin({

@@ -10,6 +10,7 @@ module.exports = merge(webpackBaseConfig, {
   context: path.join(__dirname, ".."),
   entry: {
     main: "./example/main",
+    venders: ["vue"],
   },
   output: {
     path: path.join(__dirname, "..", "example/dist"),
