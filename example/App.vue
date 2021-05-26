@@ -5,7 +5,7 @@
 export default {
   data() {
     return {
-      msg: "Hello world",
+      msg: "Hello world 999990009944444555",
     };
   },
 };
@@ -13,6 +13,6 @@ export default {
 <style scoped>
 .example {
   color: rebeccapurple;
-  font-size: 20px;
+  font-size: 30px;
 }
 </style>

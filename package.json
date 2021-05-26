@@ -7,12 +7,12 @@
     "test": "echo \"hello test\" ",
     "prepare": "husky install",
     "prettier": "npx prettier --write --config .prettierrc.js src/**/*",
-    "lintfix": "eslint --fix",
+    "lintfix": "eslint --fix --ext .js,.jsx,.vue,.ts,.tsx --config .eslintrc.js",
     "dev": "webpack serve --config ./build/webpack.dev.config.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.2",
