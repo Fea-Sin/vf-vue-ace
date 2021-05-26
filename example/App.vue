@@ -1,11 +1,13 @@
 <template>
-  <div class="example">{{ msg }}</div>
+  <div :class="['example']">
+    <div class="vf-box">{{ msg }}</div>
+  </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      msg: "Hello world 999990009944444555",
+      msg: "VF - UI",
     };
   },
 };
@@ -14,5 +16,6 @@ export default {
 .example {
   color: rebeccapurple;
   font-size: 30px;
+  text-align: center;
 }
 </style>
