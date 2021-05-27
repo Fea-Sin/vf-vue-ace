@@ -4,7 +4,7 @@
     <div :class="['vf-artical', 'content']">
       <div class="t1">VF-UI ARTICAL</div>
     </div>
-    <div :class="['content', 'test-sass']">VF-UI TEST SASS</div>
+    <div :class="['content', 'test-sass']">VF-UI TEST SASS111</div>
   </div>
 </template>
 <script>

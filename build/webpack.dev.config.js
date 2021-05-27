@@ -12,12 +12,12 @@ module.exports = merge(webpackBaseConfig, {
     main: "./example/main",
   },
   output: {
-    path: path.join(__dirname, "..", "example/dist"),
+    path: path.join(__dirname, "..", "public"),
     filename: "[name].bundle.js",
-    chunkFilename: "[name].bundle.js",
+    publicPath: "/",
   },
   devServer: {
-    contentBase: path.join(__dirname, "..", "example"),
+    contentBase: path.join(__dirname, "..", "public"),
     compress: true,
     hot: true,
     historyApiFallback: true,
@@ -25,6 +25,7 @@ module.exports = merge(webpackBaseConfig, {
     port: 5090,
     overlay: true,
     stats: "errors-only",
+    host: "127.0.0.1",
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -33,7 +34,8 @@ module.exports = merge(webpackBaseConfig, {
       },
     }),
     new HtmlWebpackPlugin({
-      template: "example/index.html",
+      template: "public/index.html",
+      favicon: "public/favicon.ico",
     }),
   ],
 });

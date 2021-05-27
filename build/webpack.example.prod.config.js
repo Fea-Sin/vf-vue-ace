@@ -3,6 +3,7 @@ const webpackBaseConfig = require("./webpack.base.config");
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = merge(webpackBaseConfig, {
   mode: "production",
@@ -13,9 +14,10 @@ module.exports = merge(webpackBaseConfig, {
     venders: ["vue"],
   },
   output: {
-    path: path.join(__dirname, "..", "example/dist"),
-    filename: "[name].bundle.js",
-    chunkFilename: "[name].bundle.js",
+    path: path.join(__dirname, "..", "example/dist/assets"),
+    publicPath: "assets/",
+    filename: "[name].[hash:7].bundle.js",
+    chunkFilename: "[name].[hash:7].bundle.js",
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -24,7 +26,10 @@ module.exports = merge(webpackBaseConfig, {
       },
     }),
     new HtmlWebpackPlugin({
-      template: "example/index.html",
+      template: "public/index.html",
+      filename: path.join(__dirname, "..", "example/dist/index.html"),
+      favicon: path.join(__dirname, "..", "public/favicon.ico"),
     }),
+    new CleanWebpackPlugin(),
   ],
 });
