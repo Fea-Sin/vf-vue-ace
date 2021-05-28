@@ -13,8 +13,9 @@ module.exports = merge(webpackBaseConfig, {
   },
   output: {
     path: path.join(__dirname, "..", "public"),
-    filename: "[name].bundle.js",
     publicPath: "/",
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].bundle.js",
   },
   devServer: {
     contentBase: path.join(__dirname, "..", "public"),

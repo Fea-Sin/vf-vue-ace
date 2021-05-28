@@ -32,14 +32,14 @@ module.exports = {
         use: ["style-loader", "css-loader", "less-loader"],
       },
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         loader: "ts-loader",
         options: { appendTsSuffixTo: [/\.vue$/] },
       },
     ],
   },
   resolve: {
-    extensions: [".vue", ".js", "ts", ".tsx", ".jsx"],
+    extensions: [".vue", ".js", ".ts", ".tsx", ".jsx"],
     alias: {
       vue: "vue/dist/vue.esm.js",
       "@": path.join(__dirname, "..", "src"),
