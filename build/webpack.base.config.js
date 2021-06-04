@@ -36,6 +36,21 @@ module.exports = {
         loader: "ts-loader",
         options: { appendTsSuffixTo: [/\.vue$/] },
       },
+      {
+        test: /\.(svg|gif|png|jpe?g)(\?\S*)?$/,
+        loader: "url-loader",
+        options: {
+          limit: 200,
+          esModule: false,
+        },
+      },
+      {
+        test: /\.(otf|ttf|woff2?|eot)(\?\S*)?$/,
+        loader: "file-loader",
+        options: {
+          esModule: false,
+        },
+      },
     ],
   },
   resolve: {
@@ -43,6 +58,7 @@ module.exports = {
     alias: {
       vue: "vue/dist/vue.esm.js",
       "@": path.join(__dirname, "..", "src"),
+      "E@": path.join(__dirname, "..", "example"),
     },
   },
   plugins: [new VueLoaderPlugin(), new ProgressBarPlugin()],

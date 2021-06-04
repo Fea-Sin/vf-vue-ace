@@ -1,15 +1,28 @@
 <template>
-  <div class="home">HELLO</div>
+  <div class="home">
+    HELLO
+    <ul>
+      <li>基础化工程</li>
+      <li>vue</li>
+      <li>babel</li>
+      <li>ts</li>
+      <li>less</li>
+      <li>sass</li>
+      <li>css提取</li>
+      <li>资源处理图片、字体、媒体</li>
+      <li>依赖分析</li>
+    </ul>
+  </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
 
-import { vftsa } from "../../utils/vfa";
+import VFA from "../../utils/vfa";
 
 @Component({
   mounted() {
-    vftsa("vf-ts");
+    VFA.vftsa("HOME");
   },
 })
 export default class Home extends Vue {}
