@@ -1,0 +1,5 @@
+{
+  "jsxBracketSameLine": true,
+  "htmlWhitespaceSensitivity": "ignore",
+  "requirePragma": false
+}

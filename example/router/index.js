@@ -21,6 +21,11 @@ const contentRoutes = [
         name: "HOME",
         component: () => import("../view/home/index.vue"),
       },
+      {
+        path: "vfb",
+        name: "VFB",
+        component: () => import("../view/vfb/index.vue"),
+      },
     ],
   },
 ];

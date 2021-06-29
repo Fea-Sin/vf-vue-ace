@@ -12,7 +12,6 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    // "types": ["webpack-env", "mocha", "chai"],
     "paths": {
       "@/*": ["src/*"]
     },
@@ -23,7 +22,35 @@
     "src/**/*.vue",
     "src/**/*.tsx",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "types"
   ],
   "exclude": ["node_modules"]
 }
+
+/**
+ * types 要包含的类型声明文件名列表
+ * 默认所有可见的`@types`包会在编译过程中被包含进来
+ * `node_modules/@types`文件夹下及它们子文件夹下的所有包都是可见的
+ * 也就是说 `./node_modules/@types/`、`../node_modules/@types/`、`../../node_modules/@types/`等等
+ *
+ * 如果指定了 `typeRoots`，只有typeRoots下面的包才会包进来
+ * "compilerOption": {
+ *   "typeRoots": ["./typings"]
+ * }
+ * 这个配置文件会包含所有./typings下面的包，而不包含`./node_modules/@types`里面的包
+ *
+ * 如果指定了types，只有被列出的包才会被包含进来
+ * "compilerOptions": {
+ *   "types": ["node", "lodash", "express"]
+ * }
+ *
+ * 指定"types": []，可以禁用自动引入@types包
+ *
+ */
+
+/**
+ * 如果"files"和"include"都没有被指定，编译器默认包含当前目录和子目录下所有的
+ * TypeScript文件（.ts, .d.ts 和 .tsx），排除"exclude"里指定的文件
+ * JS文件（.js和.jsx）也被包含进来如果 `allowJs`被设置成true
+ */

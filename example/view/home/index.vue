@@ -18,13 +18,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
-import VFA from "../../utils/vfa";
-
-@Component({
-  mounted() {
-    VFA.vftsa("HOME");
-  },
-})
+@Component({})
 export default class Home extends Vue {}
 </script>
 

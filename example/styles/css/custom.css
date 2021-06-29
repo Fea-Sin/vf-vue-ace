@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "myFont";
+  src: url("../../assets/fonts/kghappyshadows-webfont.woff2") format("woff2"),
+    url("../../assets/fonts/kghappyshadows-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: "myFontB";
+  src: url("../../assets/fonts/kghappy-webfont.woff2") format("woff2"),
+    url("../../assets/fonts/kghappy-webfont.woff") format("woff");
+}
+
 .vf-box {
   border: 2px solid goldenrod;
   display: inline-block;
