@@ -1,6 +1,9 @@
 const { VueLoaderPlugin } = require("vue-loader");
 const path = require("path");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   module: {
@@ -21,15 +24,47 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [
+          devMode
+            ? "style-loader"
+            : {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  publicPath: "/assets/",
+                },
+              },
+          "css-loader",
+        ],
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [
+          devMode
+            ? "style-loader"
+            : {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  publicPath: "/assets/",
+                },
+              },
+          "css-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "less-loader"],
+        use: [
+          devMode
+            ? "style-loader"
+            : {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  publicPath: "/assets/",
+                },
+              },
+          "css-loader",
+          "less-loader",
+        ],
       },
       {
         test: /\.tsx?$/,
@@ -43,6 +78,7 @@ module.exports = {
         options: {
           limit: 200,
           esModule: false,
+          outputPath: "images",
         },
       },
       {
@@ -50,6 +86,7 @@ module.exports = {
         loader: "file-loader",
         options: {
           esModule: false,
+          outputPath: "fonts",
         },
       },
     ],

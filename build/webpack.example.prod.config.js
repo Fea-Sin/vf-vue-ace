@@ -1,9 +1,9 @@
 const { merge } = require("webpack-merge");
 const webpackBaseConfig = require("./webpack.base.config");
-const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = merge(webpackBaseConfig, {
   mode: "production",
@@ -15,20 +15,19 @@ module.exports = merge(webpackBaseConfig, {
   },
   output: {
     path: path.join(__dirname, "..", "example/dist/assets"),
-    publicPath: "assets/",
-    filename: "[name].[hash:7].bundle.js",
-    chunkFilename: "[name].[hash:7].bundle.js",
+    publicPath: "/assets/",
+    filename: "js/[name].[hash:7].js",
+    chunkFilename: "js/[name].[hash:7].js",
   },
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("production"),
-      },
-    }),
     new HtmlWebpackPlugin({
       template: "public/index.html",
+      favicon: "public/favicon.ico",
       filename: path.join(__dirname, "..", "example/dist/index.html"),
-      favicon: path.join(__dirname, "..", "public/favicon.ico"),
+    }),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].[hash:7].css",
+      chunkFilename: "css/[name].[hash:7].css",
     }),
     new CleanWebpackPlugin(),
   ],

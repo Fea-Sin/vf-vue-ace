@@ -14,5 +14,6 @@ export default {};
 .title {
   font-family: "myFontB";
   font-size: 30px;
+  color: blueviolet;
 }
 </style>

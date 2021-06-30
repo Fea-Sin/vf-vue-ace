@@ -26,14 +26,9 @@ module.exports = merge(webpackBaseConfig, {
     port: 5090,
     overlay: true,
     stats: "errors-only",
-    host: "127.0.0.1",
+    // host: "127.0.0.1",
   },
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("development"),
-      },
-    }),
     new HtmlWebpackPlugin({
       template: "public/index.html",
       favicon: "public/favicon.ico",

@@ -8,8 +8,8 @@
     "prepare": "husky install",
     "prettier": "npx prettier --write --config .prettierrc.js src/**/*",
     "lintfix": "eslint --fix --ext .js,.jsx,.vue,.ts,.tsx --config .eslintrc.js",
-    "dev": "webpack serve --config ./build/webpack.dev.config.js",
-    "build": "webpack --config ./build/webpack.example.prod.config.js"
+    "dev": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.dev.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.example.prod.config.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,7 @@
     "@vue/eslint-config-typescript": "^7.0.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
     "eslint": "^7.27.0",
     "eslint-plugin-prettier": "^3.4.0",
@@ -32,6 +33,7 @@
     "less": "^4.1.1",
     "less-loader": "5.0.0",
     "lint-staged": "^11.0.0",
+    "mini-css-extract-plugin": "^1.6.2",
     "node-sass": "^6.0.0",
     "prettier": "2.2.1",
     "progress-bar-webpack-plugin": "^2.1.0",

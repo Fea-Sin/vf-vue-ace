@@ -11,6 +11,8 @@
       <li>css提取</li>
       <li>资源处理图片、字体、媒体</li>
       <li>依赖分析</li>
+      <li>VUE + TS</li>
+      <li>Tree Shaking</li>
     </ul>
   </div>
 </template>
