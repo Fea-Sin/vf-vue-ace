@@ -89,6 +89,14 @@ module.exports = {
           outputPath: "fonts",
         },
       },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?\S*)?$/,
+        loader: "file-loader",
+        options: {
+          esModule: false,
+          outputPath: "media",
+        },
+      },
     ],
   },
   resolve: {

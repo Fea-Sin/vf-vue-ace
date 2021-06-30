@@ -1,7 +1,6 @@
 <template>
   <div class="con">
-    <div class="vfa">test 1 sass -> VFA</div>
-    <h2>处理资源的几种写法</h2>
+    <h3>处理资源的几种写法</h3>
     <div class="imgBox"></div>
     <div class="imgBoxH">
       <img :src="img" />
@@ -11,6 +10,20 @@
     </div>
     <div class="imgBoxH">
       <img src="../../assets/images/avator.png" />
+    </div>
+    <div class="videoBox">
+      <h3>页面视频</h3>
+      <div>
+        <video
+          controls
+          width="500"
+          height="350"
+          poster="../../assets/images/amazing.jpeg"
+        >
+          <source src="../../assets/media/flower.webm" type="video/webm" />
+          抱歉，您的浏览器不支持视频
+        </video>
+      </div>
     </div>
   </div>
 </template>
@@ -48,5 +61,8 @@ export default {
     width: 100%;
     height: auto;
   }
+}
+.videoBox {
+  margin-top: 20px;
 }
 </style>
