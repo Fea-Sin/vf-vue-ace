@@ -1,11 +1,11 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
-
-Vue.use(VueRouter);
+import VueRouter, { RouteConfig } from "vue-router";
 
 import Layout from "../layout/index.vue";
 
-const contentRoutes = [
+Vue.use(VueRouter);
+
+const routes: Array<RouteConfig> = [
   {
     path: "/",
     component: Layout,
@@ -30,11 +30,8 @@ const contentRoutes = [
   },
 ];
 
-const createRouter = () =>
-  new VueRouter({
-    routes: contentRoutes,
-  });
-
-const router = createRouter();
+const router = new VueRouter({
+  routes,
+});
 
 export default router;

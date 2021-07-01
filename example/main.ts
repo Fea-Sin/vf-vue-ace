@@ -1,6 +1,7 @@
 import Vue from "vue";
-import App from "./App";
 import router from "./router";
+
+import App from "./App.vue";
 
 import "./styles/css/index.css";
 import "./styles/index.less";

@@ -10,6 +10,9 @@
       <li>sass</li>
       <li>css提取</li>
       <li>资源处理图片、字体、媒体</li>
+      <li>ESLint</li>
+      <li>Prettier</li>
+      <li>单元测试</li>
       <li>依赖分析</li>
       <li>VUE + TS</li>
       <li>Tree Shaking</li>

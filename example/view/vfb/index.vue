@@ -4,9 +4,6 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
 <style lang="less" scoped>
 .con {
   background-color: #e3e2e1;
