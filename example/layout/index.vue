@@ -5,6 +5,7 @@
       <router-link to="/home" class="box">HOME</router-link>
       <router-link to="/vfa" class="box">VFA</router-link>
       <router-link to="/vfb" class="box">VFB</router-link>
+      <router-link to="/com" class="box">COM</router-link>
     </div>
     <div class="routeBox">
       <router-view />

@@ -3,18 +3,18 @@
     HELLO
     <ul>
       <li>基础化工程</li>
-      <li>vue</li>
-      <li>babel</li>
-      <li>ts</li>
-      <li>less</li>
-      <li>sass</li>
-      <li>css提取</li>
+      <li>VUE</li>
+      <li>BABEL</li>
+      <li>TS</li>
+      <li>LESS</li>
+      <li>SCSS</li>
+      <li>CSS提取</li>
       <li>资源处理图片、字体、媒体</li>
       <li>ESLint</li>
       <li>Prettier</li>
+      <li>VUE + TS</li>
       <li>单元测试</li>
       <li>依赖分析</li>
-      <li>VUE + TS</li>
       <li>Tree Shaking</li>
     </ul>
   </div>

@@ -26,6 +26,11 @@ const routes: Array<RouteConfig> = [
         name: "VFB",
         component: () => import("../view/vfb/index.vue"),
       },
+      {
+        path: "com",
+        name: "COM",
+        component: () => import("E@/view/com/index.vue"),
+      },
     ],
   },
 ];
