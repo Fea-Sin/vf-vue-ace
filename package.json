@@ -1,8 +1,15 @@
 {
   "name": "vf-ui",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "view frame ui",
   "main": "index.js",
+  "files": [
+    "lib",
+    "src",
+    "packages",
+    "types"
+  ],
+  "typings": "types/index.d.ts",
   "scripts": {
     "test": "echo \"hello test\" ",
     "prepare": "husky install",
@@ -11,8 +18,12 @@
     "dev": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.dev.config.js",
     "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.example.prod.config.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "element",
+    "vue",
+    "components"
+  ],
+  "author": "feasin",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.14.3",
