@@ -1,12 +1,11 @@
 {
-  "name": "vf-ui",
+  "name": "vf-vue-ace",
   "version": "1.1.1",
-  "description": "view frame ui",
+  "description": "A vue component for Ace Editor",
   "main": "index.js",
   "files": [
     "lib",
     "src",
-    "packages",
     "types"
   ],
   "typings": "types/index.d.ts",
@@ -19,9 +18,10 @@
     "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.example.prod.config.js"
   },
   "keywords": [
-    "element",
+    "ace",
+    "ace editor",
     "vue",
-    "components"
+    "vue-component"
   ],
   "author": "feasin",
   "license": "MIT",
@@ -58,7 +58,9 @@
     "webpack": "^4.46.0",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2",
-    "webpack-merge": "^5.7.3"
+    "webpack-merge": "^5.7.3",
+    "vue-router": "^3.5.1",
+    "vuex": "^3.6.2"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
@@ -67,10 +69,19 @@
     ]
   },
   "dependencies": {
+    "ace-builds": "^1.4.12",
+    "diff-match-patch": "^1.0.5",
+    "lodash.get": "^4.4.2",
+    "lodash.isequal": "^4.5.0",
     "vue": "^2.6.12",
     "vue-class-component": "^7.2.6",
-    "vue-property-decorator": "^9.1.2",
-    "vue-router": "^3.5.1",
-    "vuex": "^3.6.2"
+    "vue-property-decorator": "^9.1.2"
+  },
+  "peerDependencies": {
+    "vue": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Fea-Sin/vf-vue-ace.git"
   }
 }
