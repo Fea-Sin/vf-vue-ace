@@ -6,12 +6,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { Ace, Range } from "ace-builds";
 import * as AceBuilds from "ace-builds";
 
-import {
-  debounce,
-  editorOptions,
-  // editorEvents,
-  getAceInstance,
-} from "./editorOptions";
+import { debounce, editorOptions, getAceInstance } from "./editorOptions";
 
 const ace = getAceInstance();
 
