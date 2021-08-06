@@ -39,3 +39,100 @@ export interface IEditorProps {
   $onSingleSelect?: (...args: any[]) => any;
   $onTokenizerUpdate?: (...args: any[]) => any;
 }
+
+export interface IMarker {
+  startRow: number;
+  startCol: number;
+  endRow: number;
+  endCol: number;
+  className: string;
+  type: "fullLine" | "screenLine" | "text" | Ace.MarkerRenderer;
+  inFront?: boolean;
+}
+
+export interface ICommandBindKey {
+  win: string;
+  mac: string;
+}
+
+type ICommandExecFunction = (editor: Ace.Editor, args?: any) => void;
+
+export interface ICommand {
+  name: string;
+  bindKey: ICommandBindKey;
+  exec: string | ICommandExecFunction;
+}
+
+export interface IAceOptions {
+  [index: string]: any;
+  selectionStyle?: "line" | "text";
+  highlightActiveLine?: boolean;
+  highlightSelectedWord?: boolean;
+  readonly: boolean;
+  cusorStyle?: "ace" | "slim" | "smooth" | "wide";
+  mergeUndoDeltas?: false | true | "always";
+  behavioursEnabled?: boolean;
+  wrapBehavioursEnabled?: boolean;
+  // this is needed if editor is inside scrollable page
+  autoScrollEditorIntoView?: boolean;
+  hScrollBarAlwaysVisible?: boolean;
+  vScrollBarAlwaysVisible?: boolean;
+  highlightGutterLine?: boolean;
+  animatedScroll?: boolean;
+  showPrintMargin?: number;
+  printMarginColumn?: boolean;
+  printMargin?: boolean | number;
+  fadeFoldWidgets?: boolean;
+  showFoldWidgets?: boolean;
+  showLineNumbers: boolean;
+  showGutter?: boolean;
+  displayIndentGuides?: boolean;
+  // number or css font-size string
+  fontSize?: number | string;
+  fontFamily?: string;
+  maxLine?: number;
+  minLine?: number;
+  scrollPastEnd?: boolean;
+  fixedWidthGutter?: boolean;
+  // path to a theme e.g "ace/theme/textmate"
+  theme?: string;
+  scrollSpeed?: number;
+  dragDelay?: number;
+  dragEnabled?: boolean;
+  focusTimout?: number;
+  tooltipFollowsMouse?: boolean;
+  firstLineNumber?: number;
+  overwrite?: boolean;
+  newLineMode?: boolean;
+  useWorker?: boolean;
+  useSoftTabs?: boolean;
+  tabSize?: number;
+  wrap?: boolean;
+  foldStyle?: boolean;
+  // path to a mode e.g "ace/mode/text"
+  mode?: string;
+  enableMultiselect?: boolean;
+  enableEmmet?: boolean;
+  enableBasicAutocompletion?: boolean;
+  enableLiveAutocompletion?: boolean;
+  enableSnippets?: boolean;
+  spellcheck?: boolean;
+  useElasticTabstops?: boolean;
+}
+
+export interface IAnnotation {
+  row: number;
+  column: number;
+  text: string;
+  type: "error" | "info" | "warning";
+}
+
+interface IRenderer extends Ace.VirtualRenderer {
+  placeholderNode?: HTMLDivElement;
+  scroller?: HTMLDivElement;
+}
+
+export type IAceEditor = Ace.Editor & {
+  renderer: IRenderer;
+  [index: string]: any;
+};

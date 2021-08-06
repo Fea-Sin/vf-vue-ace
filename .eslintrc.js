@@ -21,6 +21,9 @@ module.exports = {
     quotes: ["error", "double"],
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-prototype-builtins": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
   },
 };
