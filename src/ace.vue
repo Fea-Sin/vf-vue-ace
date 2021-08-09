@@ -159,7 +159,7 @@ export default class Acevf extends Vue {
       mode,
       focus,
       theme,
-      fontSize = "",
+      fontSize = 12,
       value,
       defaultValue,
       showGutter,
