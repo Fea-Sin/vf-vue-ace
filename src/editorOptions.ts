@@ -1,13 +1,20 @@
 import * as AceBuilds from "ace-builds";
 
-type EditorOption =
+export interface IEditorOptions {
+  useWorker: boolean;
+  showLineNumbers: boolean;
+  tabSize: number;
+}
+export type EditorOptionsType = "useWorker" | "showLineNumbers" | "tabSize";
+
+export type EditorOption =
   | "minLines"
   | "maxLines"
   | "readOnly"
   | "highlightActiveLine"
   | "tabSize"
   | "enableBasicAutocompletion"
-  | "enableLiveAutocomletion"
+  | "enableLiveAutocompletion"
   | "enableSnippets";
 
 const editorOptions: EditorOption[] = [
@@ -17,7 +24,7 @@ const editorOptions: EditorOption[] = [
   "highlightActiveLine",
   "tabSize",
   "enableBasicAutocompletion",
-  "enableLiveAutocomletion",
+  "enableLiveAutocompletion",
   "enableSnippets",
 ];
 

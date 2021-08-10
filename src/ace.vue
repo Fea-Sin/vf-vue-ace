@@ -1,22 +1,22 @@
 <template>
-  <div ref="refEditor" :style="divStyle"></div>
+  <div ref="refEditor" :id="name" :style="divStyle"></div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { Ace, Range } from "ace-builds";
 import * as AceBuilds from "ace-builds";
 
-import { debounce, editorOptions, getAceInstance } from "./editorOptions";
+import {
+  debounce,
+  editorOptions,
+  getAceInstance,
+  IEditorOptions,
+  EditorOptionsType,
+} from "./editorOptions";
 
 const ace = getAceInstance();
 
-import {
-  IAceEditor,
-  IAceOptions,
-  ICommand,
-  IEditorProps,
-  IMarker,
-} from "./types";
+import { IAceEditor, ICommand, IEditorProps, IMarker } from "./types";
 
 type IObject = {
   [key: string]: any;
@@ -64,7 +64,7 @@ export interface IAceEditorProps {
   onBlur?: (event: any, editor?: Ace.Editor) => void;
   onScroll?: (editor: IEditorProps) => void;
   editorProps?: IEditorProps;
-  setOptions?: IAceOptions;
+  setOptions?: IEditorOptions;
   keyboardHandler?: string;
   commands?: ICommand[];
   annotations?: Ace.Annotation[];
@@ -119,10 +119,10 @@ export default class Acevf extends Vue {
   @Prop() onBlur?: (event: any, editor?: Ace.Editor) => void;
   @Prop({ default: () => null }) onScroll?: (editor: IEditorProps) => void;
   @Prop() editorProps?: IEditorProps;
-  @Prop() setOptions!: IAceOptions;
+  @Prop() setOptions!: IEditorOptions;
   @Prop() keyboardHandler?: string;
   @Prop() commands?: ICommand;
-  @Prop() annotations?: Ace.Annotation;
+  @Prop() annotations?: Ace.Annotation[];
   @Prop() markers?: IMarker[];
 
   editor!: IAceEditor;
@@ -175,6 +175,7 @@ export default class Acevf extends Vue {
       debounceChangePeriod,
       editorProps = {},
       navigateToFileEnd,
+      setOptions,
     } = this;
 
     const { refEditor } = this.$refs;
@@ -272,7 +273,7 @@ export default class Acevf extends Vue {
       }
     });
 
-    this.handleOptions(this as IAceEditorProps);
+    this.handleOptions(setOptions);
 
     if (Array.isArray(commands)) {
       commands.forEach((command) => {
@@ -299,6 +300,156 @@ export default class Acevf extends Vue {
     if (focus) {
       this.editor.focus();
     }
+  }
+
+  @Watch("minLines")
+  onMinLinesChange(val: number) {
+    this.editor.setOption("minLines", val);
+  }
+
+  @Watch("maxLines")
+  onMaxLinesChange(val: number) {
+    this.editor.setOption("maxLines", val);
+  }
+
+  @Watch("readOnly")
+  onReadOnlyChange(val: boolean) {
+    this.editor.setOption("readOnly", val);
+  }
+  @Watch("highlightActiveLine")
+  onHighlightActiveLineChange(val: boolean) {
+    this.editor.setOption("highlightActiveLine", val);
+  }
+  @Watch("tabSize")
+  onTabSizeChange(val: number) {
+    this.editor.setOption("tabSize", val);
+  }
+
+  @Watch("enableBasicAutocompletion")
+  onEnableBasicAutocompletionChange(val: boolean | string[]) {
+    this.editor.setOptions({
+      enableBasicAutocompletion: val,
+    });
+  }
+
+  @Watch("enableLiveAutocompletion")
+  onEnableLiveAntocompletionChange(val: boolean | string[]) {
+    this.editor.setOptions({
+      enableLiveAutocompletion: val,
+    });
+  }
+
+  @Watch("enableSnippets")
+  onEnableSnippetsChange(val: boolean) {
+    this.editor.setOptions({
+      enableSnippets: val,
+    });
+  }
+
+  @Watch("className")
+  onClassNameChange(val: string, oldVal: string) {
+    const appliedClasses = this.refEditor.className;
+    const appliedClassesArray = appliedClasses.trim().split(" ");
+    const oldClassArray = oldVal.trim().split(" ");
+    oldClassArray.forEach((oldClass) => {
+      const index = appliedClassesArray.indexOf(oldClass);
+      appliedClassesArray.splice(index, 1);
+    });
+    this.refEditor.className = " " + val + " " + appliedClassesArray.join(" ");
+  }
+
+  @Watch("value")
+  onValueChange(val: string) {
+    this.silent = true;
+    const pos = this.editor.session.selection.toJSON();
+    this.editor.setValue(val, this.cursorStart);
+    this.editor.session.selection.fromJSON(pos);
+    this.silent = false;
+  }
+
+  @Watch("placeholder")
+  onPlaceholderChange() {
+    this.updatePlaceholder();
+  }
+
+  @Watch("mode")
+  onModeChange(val: string | IObject) {
+    console.log("mode change---->", val);
+    this.editor
+      .getSession()
+      .setMode(
+        this.mode === "string"
+          ? `ace/mode/${val}`
+          : (this.mode as Ace.SyntaxMode)
+      );
+  }
+
+  @Watch("theme")
+  onThemeChange(val: string) {
+    this.editor.setTheme("ace/theme/" + val);
+  }
+
+  @Watch("keyboardHandler")
+  onKeyboardHandlerChange(val: string) {
+    if (val) {
+      this.editor.setKeyboardHandler("ace/keyboard/" + val);
+    } else {
+      this.editor.setKeyboardHandler(null as any);
+    }
+  }
+
+  @Watch("fontSize")
+  onFontSizeChange(val: number | string) {
+    this.editor.setFontSize(typeof val === "number" ? `${val}px` : val);
+  }
+
+  @Watch("wrapEnabled")
+  onWrapEnabled(val: boolean) {
+    this.editor.getSession().setUseWrapMode(val);
+  }
+
+  @Watch("showPrintMargin")
+  onShowPrintMarginChange(val: boolean) {
+    this.editor.setShowPrintMargin(val);
+  }
+
+  @Watch("showGutter")
+  onShowGutter(val: boolean) {
+    this.editor.renderer.setShowGutter(val);
+  }
+
+  @Watch("setOptions")
+  onSetOptionsChange(val: IEditorOptions) {
+    this.handleOptions(val);
+  }
+
+  @Watch("annotations")
+  onAnnotationsChange(val: Ace.Annotation[]) {
+    this.editor.getSession().setAnnotations(val || []);
+  }
+
+  @Watch("markers")
+  onMarkersChange(val: IMarker[]) {
+    this.handleMarkers(val);
+  }
+
+  @Watch("scrollMargin")
+  onScrollMarginChange(val: number[]) {
+    this.handleScrollMargins(val);
+  }
+
+  @Watch("width")
+  onWidthChange() {
+    this.editor.resize();
+  }
+  @Watch("height")
+  onHeightChange() {
+    this.editor.resize();
+  }
+
+  @Watch("focus")
+  onFocusChange() {
+    this.editor.focus();
   }
 
   onFocusVf(event: any): void {
@@ -334,6 +485,15 @@ export default class Acevf extends Vue {
     if (this.placeholder) {
       this.updatePlaceholder();
     }
+  }
+
+  handleScrollMargins(margins = [0, 0, 0, 0]) {
+    this.editor.renderer.setScrollMargin(
+      margins[0],
+      margins[1],
+      margins[2],
+      margins[3]
+    );
   }
 
   updatePlaceholder(): void {
@@ -413,11 +573,12 @@ export default class Acevf extends Vue {
     );
   }
 
-  handleOptions(props: IAceEditorProps): void {
-    const setOptions = Object.keys(props.setOptions || {});
-    for (let y = 0; y < setOptions.length; y++) {
-      // @ts-ignore
-      this.editor.setOption(setOptions[y], props.setOptions[setOptions[y]]);
+  handleOptions(setOptions: IEditorOptions): void {
+    const setOptionsArray: any = Object.keys(setOptions || {});
+    for (let y = 0; y < setOptionsArray.length; y++) {
+      let key: EditorOptionsType = setOptionsArray[y];
+      let value = setOptions[key];
+      this.editor.setOption(key as any, value);
     }
   }
 }
