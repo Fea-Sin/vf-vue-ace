@@ -204,11 +204,9 @@ export default class Acevf extends Vue {
     if (this.isInShadow(refEditor as HTMLElement)) {
       this.editor.renderer.attachToShadowRoot();
     }
-    this.editor
-      .getSession()
-      .setMode(
-        typeof mode === "string" ? `ace/mode/${mode}` : (mode as Ace.SyntaxMode)
-      );
+    if (mode && mode !== "") {
+      this.editor.session.setMode(`ace/mode/${mode}`);
+    }
 
     if (theme && theme !== "") {
       this.editor.setTheme(`ace/theme/${theme}`);
@@ -374,14 +372,7 @@ export default class Acevf extends Vue {
 
   @Watch("mode")
   onModeChange(val: string | IObject) {
-    console.log("mode change---->", val);
-    this.editor
-      .getSession()
-      .setMode(
-        this.mode === "string"
-          ? `ace/mode/${val}`
-          : (this.mode as Ace.SyntaxMode)
-      );
+    this.editor.session.setMode("ace/mode/" + val);
   }
 
   @Watch("theme")

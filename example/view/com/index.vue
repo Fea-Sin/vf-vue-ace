@@ -41,6 +41,14 @@
           </option>
         </select>
       </div>
+      <div class="box">
+        <h3 class="inline">Theme</h3>
+        <select class="vfSelect" :value="vfTheme" @change="themeChange">
+          <option v-for="item in vfThemeArray" :key="item" :value="item">
+            {{ item }}
+          </option>
+        </select>
+      </div>
     </div>
     <div class="right">
       <Acevf
@@ -54,6 +62,7 @@
         :placeholder="vfPlaceholder"
         :value="defaultValue"
         :mode="vfMode"
+        :theme="vfTheme"
       />
     </div>
   </div>
@@ -61,7 +70,6 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Acevf from "@/ace.vue";
-import "ace-builds/webpack-resolver";
 
 const languages = [
   "javascript",
@@ -81,6 +89,30 @@ const languages = [
   "typescript",
   "css",
 ];
+
+const themes = [
+  "monokai",
+  "github",
+  "tomorrow",
+  "kuroir",
+  "twilight",
+  "xcode",
+  "textmate",
+  "solarized_dark",
+  "solarized_light",
+  "terminal",
+];
+
+languages.forEach((lang) => {
+  require(`ace-builds/src-noconflict/mode-${lang}`);
+  require(`ace-builds/src-noconflict/snippets/${lang}`);
+});
+
+themes.forEach((theme) => {
+  require(`ace-builds/src-noconflict/theme-${theme}`);
+});
+import "ace-builds/src-min-noconflict/ext-searchbox";
+import "ace-builds/src-min-noconflict/ext-language_tools";
 
 const defaultValue = `
 // 还可以折叠代码
@@ -122,7 +154,9 @@ export default class Com extends Vue {
   vfPlaceholder = "自由无碍编写代码";
   defaultValue = defaultValue;
   vfModeArray = languages;
-  vfMode = "mysql";
+  vfThemeArray = themes;
+  vfMode = "javascript";
+  vfTheme = "monokai";
 
   fontSizeChange(event: any) {
     this.vfFontSize = Number(event.target.value);
@@ -140,8 +174,10 @@ export default class Com extends Vue {
     };
   }
   modeChange(event: any) {
-    console.log("change language--->", event.target.value);
     this.vfMode = event.target.value;
+  }
+  themeChange(event: any) {
+    this.vfTheme = event.target.value;
   }
 }
 </script>
