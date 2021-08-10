@@ -87,7 +87,7 @@ export default class Acevf extends Vue {
   @Prop({ default: () => false }) focus?: boolean;
   @Prop({ default: () => 1 }) cursorStart?: number;
   @Prop({ default: () => false }) wrapEnabled?: boolean;
-  @Prop({ default: () => false }) readonly?: boolean;
+  @Prop({ default: () => false }) readOnly?: boolean;
   @Prop({ default: () => null }) minLines?: number;
   @Prop({ default: () => null }) maxLines?: number;
   @Prop({ default: () => true }) navigateToFileEnd?: boolean;
@@ -176,6 +176,8 @@ export default class Acevf extends Vue {
       editorProps = {},
       navigateToFileEnd,
       setOptions,
+      enableLiveAutocompletion,
+      readOnly,
     } = this;
 
     const { refEditor } = this.$refs;
@@ -286,9 +288,17 @@ export default class Acevf extends Vue {
     if (keyboardHandler) {
       this.editor.setKeyboardHandler("ace/keyboard/" + keyboardHandler);
     }
+    if (readOnly) {
+      this.editor.setOption("readOnly", readOnly);
+    }
 
     if (className) {
       (this.$refs.refEditor as HTMLElement).className += " " + className;
+    }
+    if (enableLiveAutocompletion) {
+      this.editor.setOptions({
+        enableLiveAutocompletion: enableLiveAutocompletion,
+      });
     }
 
     if (onLoad) {

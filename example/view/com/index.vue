@@ -2,7 +2,7 @@
   <div class="con">
     <div class="left">
       <div class="box">
-        <h3>Font Size</h3>
+        <h3 class="inline">Font Size</h3>
         <select class="vfSelect" :value="vfFontSize" @change="fontSizeChange">
           <option v-for="item in fontSizeArray" :key="item" :value="item">
             {{ item }}
@@ -49,6 +49,37 @@
           </option>
         </select>
       </div>
+      <div class="box">
+        <h3 class="inline">LiveAutocompletion</h3>
+        <input
+          type="checkbox"
+          :checked="enableLiveAutocompletion"
+          @change="handleLiveAutocompletion"
+        />
+      </div>
+      <div class="box">
+        <h3 class="inline">Show Print Margin</h3>
+        <input
+          type="checkbox"
+          :checked="showPrintMargin"
+          @change="handleShowPrintMargin"
+        />
+      </div>
+      <div class="box">
+        <h3 class="inline">Tab Size</h3>
+        <select class="vfSelect" :value="vfTabSize" @change="handleTabSize">
+          <option v-for="item in tabSizeArray" :key="item" :value="item">
+            {{ item }}
+          </option>
+        </select>
+      </div>
+      <div class="box">
+        <h3 class="inline">ReadOnly</h3>
+        <input type="checkbox" :checked="readOnly" @change="handleReadOnly" />
+      </div>
+      <div class="box">
+        <div class="button" @click="showCurrentValue">当前值</div>
+      </div>
     </div>
     <div class="right">
       <Acevf
@@ -63,6 +94,11 @@
         :value="defaultValue"
         :mode="vfMode"
         :theme="vfTheme"
+        :enableLiveAutocompletion="enableLiveAutocompletion"
+        :showPrintMargin="showPrintMargin"
+        :readOnly="readOnly"
+        :onLoad="handleOnLoad"
+        :onChange="handleVfAceChange"
       />
     </div>
   </div>
@@ -115,8 +151,6 @@ import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 
 const defaultValue = `
-// 还可以折叠代码
-
 /**
  * 
  * 可以自动识别
@@ -129,7 +163,10 @@ const defaultValue = `
 
 function onLoad(editor) {
   console.log("I have loaded");
-}`;
+  const value = "hello world"
+  return value;
+}
+`;
 
 @Component({
   components: {
@@ -142,9 +179,10 @@ export default class Com extends Vue {
   showGutter = true;
   highlightActiveLine = true;
   enableBasicAutocompletion = false;
-  enableLiveAutocompletion = false;
+  enableLiveAutocompletion: boolean | string[] = true;
   enableSnippets = true;
   showLineNumbers = true;
+  tabSizeArray = [2, 4];
   vfTabSize = 2;
   vfSetOptions = {
     useWorker: false,
@@ -157,6 +195,9 @@ export default class Com extends Vue {
   vfThemeArray = themes;
   vfMode = "javascript";
   vfTheme = "monokai";
+  showPrintMargin = true;
+  currentValue = "";
+  readOnly = false;
 
   fontSizeChange(event: any) {
     this.vfFontSize = Number(event.target.value);
@@ -178,6 +219,31 @@ export default class Com extends Vue {
   }
   themeChange(event: any) {
     this.vfTheme = event.target.value;
+  }
+  handleOnLoad() {
+    console.log("I Am Load");
+  }
+  handleLiveAutocompletion(event: any) {
+    this.enableLiveAutocompletion = event.target.checked;
+  }
+  handleShowPrintMargin(event: any) {
+    this.showPrintMargin = event.target.checked;
+  }
+  handleTabSize(event: any) {
+    this.vfTabSize = Number(event.target.value);
+    this.vfSetOptions = {
+      ...this.vfSetOptions,
+      tabSize: Number(event.target.value),
+    };
+  }
+  handleVfAceChange(newValue: string) {
+    this.currentValue = newValue;
+  }
+  showCurrentValue() {
+    console.log("Vue Ace---->", this.currentValue);
+  }
+  handleReadOnly(event: any) {
+    this.readOnly = event.target.checked;
   }
 }
 </script>
@@ -211,6 +277,13 @@ export default class Com extends Vue {
     margin-bottom: 16px;
   }
   .inline {
+    display: inline-block;
+  }
+  .button {
+    padding: 8px 12px;
+    color: blueviolet;
+    cursor: pointer;
+    border: 1px solid #999;
     display: inline-block;
   }
 }
