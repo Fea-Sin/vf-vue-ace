@@ -10,12 +10,13 @@
   "typings": "src/types.ts",
   "scripts": {
     "test": "echo \"hello test\" ",
-    "prepare": "husky install",
     "prettier": "npx prettier --write --config .prettierrc.js src/**/*",
     "lintfix": "eslint --fix --ext .js,.jsx,.vue,.ts,.tsx --config .eslintrc.js",
     "dev": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.dev.config.js",
     "build:example": "cross-env NODE_ENV=production webpack --config ./build/webpack.example.prod.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js"
+    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js",
+    "prepublishOnly": "npm run test",
+    "prepare": "npm run build"
   },
   "keywords": [
     "ace",
