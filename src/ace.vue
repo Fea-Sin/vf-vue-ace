@@ -16,60 +16,7 @@ import {
 
 const ace = getAceInstance();
 
-import { IAceEditor, ICommand, IEditorProps, IMarker } from "./types";
-
-type IObject = {
-  [key: string]: any;
-};
-
-export interface IAceEditorProps {
-  name?: string;
-  vfStyle?: Partial<CSSStyleDeclaration>;
-  mode?: string | IObject;
-  theme?: string;
-  height?: string;
-  width?: string;
-  className?: string;
-  fontSize?: number | string;
-  showGutter?: boolean;
-  showPrintMargin?: boolean;
-  highlightActiveLine?: boolean;
-  focus?: boolean;
-  cursorStart?: number;
-  wrapEnabled?: boolean;
-  readOnly?: boolean;
-  minLines?: number;
-  maxLines?: number;
-  navigateToFileEnd?: boolean;
-  debounceChangePeriod?: number;
-  enableBasicAutocompletion?: boolean | string[];
-  enableLiveAutocompletion?: boolean | string[];
-  tabSize?: number;
-  value?: string;
-  placeholder?: string;
-  defaultValue?: string;
-  scrollMargin?: number[];
-  enableSnippets?: boolean;
-  onSelectionChange?: (value: any, event?: any) => void;
-  onCursorChange?: (value: any, event?: any) => void;
-  onInput?: (event?: any) => void;
-  onLoad?: (editor: Ace.Editor) => void;
-  onValidate?: (annotations: Ace.Annotation[]) => void;
-  onBeforeLoad?: (ace: typeof AceBuilds) => void;
-  onChange?: (value: string, event?: any) => void;
-  onSelection?: (selectedText: string, event?: any) => void;
-  onCopy?: (value: string) => void;
-  onPaste?: (value: string) => void;
-  onFocus?: (event: any, editor?: Ace.Editor) => void;
-  onBlur?: (event: any, editor?: Ace.Editor) => void;
-  onScroll?: (editor: IEditorProps) => void;
-  editorProps?: IEditorProps;
-  setOptions?: IEditorOptions;
-  keyboardHandler?: string;
-  commands?: ICommand[];
-  annotations?: Ace.Annotation[];
-  markers?: IMarker[];
-}
+import { IAceEditor, ICommand, IEditorProps, IMarker, IObject } from "./types";
 
 @Component
 export default class Acevf extends Vue {
@@ -308,6 +255,11 @@ export default class Acevf extends Vue {
     if (focus) {
       this.editor.focus();
     }
+  }
+
+  destroyed() {
+    this.editor.destroy();
+    this.editor = null as any;
   }
 
   @Watch("minLines")
@@ -584,8 +536,3 @@ export default class Acevf extends Vue {
   }
 }
 </script>
-<style lang="less" scoped>
-.vf-ace {
-  font-size: 16px;
-}
-</style>

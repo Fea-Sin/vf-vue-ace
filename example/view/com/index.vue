@@ -156,9 +156,6 @@ const defaultValue = `
  * 可以自动识别
  * 
  * 
- * 
- * 
- * 
  */
 
 function onLoad(editor) {

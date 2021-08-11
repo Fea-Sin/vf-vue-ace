@@ -1,4 +1,6 @@
 import { Ace } from "ace-builds";
+import * as AceBuilds from "ace-builds";
+import { IEditorOptions } from "./editorOptions";
 
 export interface ICommandManager {
   byName: any;
@@ -136,3 +138,56 @@ export type IAceEditor = Ace.Editor & {
   renderer: IRenderer;
   [index: string]: any;
 };
+
+export type IObject = {
+  [key: string]: any;
+};
+
+export interface IAceEditorProps {
+  name?: string;
+  vfStyle?: Partial<CSSStyleDeclaration>;
+  mode?: string | IObject;
+  theme?: string;
+  height?: string;
+  width?: string;
+  className?: string;
+  fontSize?: number | string;
+  showGutter?: boolean;
+  showPrintMargin?: boolean;
+  highlightActiveLine?: boolean;
+  focus?: boolean;
+  cursorStart?: number;
+  wrapEnabled?: boolean;
+  readOnly?: boolean;
+  minLines?: number;
+  maxLines?: number;
+  navigateToFileEnd?: boolean;
+  debounceChangePeriod?: number;
+  enableBasicAutocompletion?: boolean | string[];
+  enableLiveAutocompletion?: boolean | string[];
+  tabSize?: number;
+  value?: string;
+  placeholder?: string;
+  defaultValue?: string;
+  scrollMargin?: number[];
+  enableSnippets?: boolean;
+  onSelectionChange?: (value: any, event?: any) => void;
+  onCursorChange?: (value: any, event?: any) => void;
+  onInput?: (event?: any) => void;
+  onLoad?: (editor: Ace.Editor) => void;
+  onValidate?: (annotations: Ace.Annotation[]) => void;
+  onBeforeLoad?: (ace: typeof AceBuilds) => void;
+  onChange?: (value: string, event?: any) => void;
+  onSelection?: (selectedText: string, event?: any) => void;
+  onCopy?: (value: string) => void;
+  onPaste?: (value: string) => void;
+  onFocus?: (event: any, editor?: Ace.Editor) => void;
+  onBlur?: (event: any, editor?: Ace.Editor) => void;
+  onScroll?: (editor: IEditorProps) => void;
+  editorProps?: IEditorProps;
+  setOptions?: IEditorOptions;
+  keyboardHandler?: string;
+  commands?: ICommand[];
+  annotations?: Ace.Annotation[];
+  markers?: IMarker[];
+}
