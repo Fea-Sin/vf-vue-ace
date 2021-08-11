@@ -2,11 +2,10 @@
   "name": "vf-vue-ace",
   "version": "1.1.1",
   "description": "A vue component for Ace Editor",
-  "main": "index.js",
+  "main": "lib/index.min.js",
   "files": [
     "lib",
-    "src",
-    "types"
+    "src"
   ],
   "typings": "src/types.ts",
   "scripts": {
