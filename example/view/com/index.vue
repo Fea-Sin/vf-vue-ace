@@ -162,8 +162,7 @@ const defaultValue = `
  */
 
 function onLoad(editor) {
-  console.log("I have loaded");
-  const value = "hello world"
+  const value = "hello world";
   return value;
 }
 `;
@@ -178,7 +177,7 @@ export default class Com extends Vue {
   vfFontSize = 20;
   showGutter = true;
   highlightActiveLine = true;
-  enableBasicAutocompletion = false;
+  enableBasicAutocompletion = true;
   enableLiveAutocompletion: boolean | string[] = true;
   enableSnippets = true;
   showLineNumbers = true;
