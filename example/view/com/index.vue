@@ -155,6 +155,8 @@ const defaultValue = `
  * 
  * 可以自动识别
  * 
+ * 选择所使用语言
+ * 切换所需主题
  * 
  */
 
@@ -236,7 +238,7 @@ export default class Com extends Vue {
     this.currentValue = newValue;
   }
   showCurrentValue() {
-    console.log("Vue Ace---->", this.currentValue);
+    console.log("VF Ace---->", this.currentValue);
   }
   handleReadOnly(event: any) {
     this.readOnly = event.target.checked;

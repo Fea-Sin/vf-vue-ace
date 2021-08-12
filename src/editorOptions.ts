@@ -55,26 +55,9 @@ const editorEvents: EditorEvent[] = [
   "updateRef",
 ];
 
-// Typescript globals definition to allow us to create a window object during SSR.
-declare global {
-  // eslint-disable-next-line
-  namespace NodeJS {
-    interface Global {
-      window: any;
-    }
-  }
-}
-
 const getAceInstance = (): typeof AceBuilds => {
   let ace;
-  if (typeof window === "undefined") {
-    // ace-builds just needs some window object to attach ace to.
-    // During SSR event just an empty object will work.
-    (global as any).window = {};
-    ace = require("ace-builds");
-    delete (global as any).window;
-  } else if ((window as any).ace) {
-    // Fallback for ace.require when vanilla ACE is hosted over CDN
+  if (window && (window as any).ace) {
     ace = (window as any).ace;
     ace.acequire = (window as any).ace.require || (window as any).ace.acequire;
   } else {
@@ -83,19 +66,4 @@ const getAceInstance = (): typeof AceBuilds => {
   return ace;
 };
 
-const debounce = (fn: (...args: any) => void, delay: number) => {
-  let timer: any = null;
-
-  return function () {
-    // eslint-disable-next-line
-    const context = this;
-    // eslint-disable-next-line
-    const args = arguments;
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      fn.apply(context, args as any);
-    }, delay);
-  };
-};
-
-export { editorOptions, editorEvents, debounce, getAceInstance };
+export { editorOptions, editorEvents, getAceInstance };

@@ -7,7 +7,6 @@ import { Ace, Range } from "ace-builds";
 import * as AceBuilds from "ace-builds";
 
 import {
-  debounce,
   editorOptions,
   getAceInstance,
   IEditorOptions,
@@ -40,7 +39,6 @@ export default class VFAce extends Vue {
   @Prop({ default: () => null }) minLines?: number;
   @Prop({ default: () => null }) maxLines?: number;
   @Prop({ default: () => true }) navigateToFileEnd?: boolean;
-  @Prop() debounceChangePeriod?: number;
   @Prop({ default: () => false }) enableBasicAutocompletion?:
     | boolean
     | string[];
@@ -76,7 +74,6 @@ export default class VFAce extends Vue {
 
   editor!: IAceEditor;
   refEditor!: HTMLElement;
-  debounce: (fn: any, delay: number) => (...args: any) => void = debounce;
   silent!: boolean;
 
   isInShadow(node: HTMLElement): boolean {
@@ -121,7 +118,6 @@ export default class VFAce extends Vue {
       annotations,
       markers,
       placeholder,
-      debounceChangePeriod,
       editorProps = {},
       navigateToFileEnd,
       setOptions,
@@ -139,10 +135,6 @@ export default class VFAce extends Vue {
     const editorPropsArray = Object.keys(editorProps);
     for (let i = 0; i < editorPropsArray.length; i++) {
       this.editor[editorPropsArray[i]] = editorProps[editorPropsArray[i]];
-    }
-
-    if (debounceChangePeriod) {
-      this.onChange = this.debounce(this.onChange, debounceChangePeriod);
     }
 
     this.editor.renderer.setScrollMargin(

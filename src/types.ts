@@ -162,7 +162,6 @@ export interface IAceEditorProps {
   minLines?: number;
   maxLines?: number;
   navigateToFileEnd?: boolean;
-  debounceChangePeriod?: number;
   enableBasicAutocompletion?: boolean | string[];
   enableLiveAutocompletion?: boolean | string[];
   tabSize?: number;
