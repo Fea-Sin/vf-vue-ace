@@ -1,3 +1,4 @@
 {
-  "vf-ace": "./src/ace/index.ts"
+  "vf-ace": "./src/ace/index.ts",
+  "index": "./src/index.ts"
 }
