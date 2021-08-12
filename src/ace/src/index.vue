@@ -12,13 +12,15 @@ import {
   getAceInstance,
   IEditorOptions,
   EditorOptionsType,
-} from "./editorOptions";
+} from "@/editorOptions";
 
 const ace = getAceInstance();
 
-import { IAceEditor, ICommand, IEditorProps, IMarker, IObject } from "./types";
+import { IAceEditor, ICommand, IEditorProps, IMarker, IObject } from "@/types";
 
-@Component
+@Component({
+  name: "VfAce",
+})
 export default class VFAce extends Vue {
   @Prop({ default: () => "ace-editor" }) name?: string;
   @Prop() vfStyle!: Partial<CSSStyleDeclaration>;

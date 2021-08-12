@@ -105,7 +105,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Acevf from "@/ace.vue";
+import Acevf from "@/ace";
 
 const languages = [
   "javascript",
