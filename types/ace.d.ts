@@ -31,6 +31,22 @@ export interface IEditorProps {
   $onSingleSelect?: (...args: any[]) => any;
   $onTokenizerUpdate?: (...args: any[]) => any;
 }
+export type EditorOption =
+  | "minLines"
+  | "maxLines"
+  | "readOnly"
+  | "highlightActiveLine"
+  | "tabSize"
+  | "enableBasicAutocompletion"
+  | "enableLiveAutocompletion"
+  | "enableSnippets";
+
+export interface IEditorOptions {
+  useWorker: boolean;
+  showLineNumbers: boolean;
+  tabSize: number;
+}
+export type EditorOptionsType = "useWorker" | "showLineNumbers" | "tabSize";
 export interface IMarker {
   startRow: number;
   startCol: number;
@@ -49,6 +65,14 @@ export interface ICommandBindKey {
   win: string;
   mac: string;
 }
+interface IRenderer extends Ace.VirtualRenderer {
+  placeholderNode?: HTMLDivElement;
+  scroller?: HTMLDivElement;
+}
+export type IAceEditor = Ace.Editor & {
+  renderer: IRenderer;
+  [index: string]: any;
+};
 export interface ICommand {
   name: string;
   bindKey: ICommandBindKey;

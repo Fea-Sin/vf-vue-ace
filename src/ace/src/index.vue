@@ -7,15 +7,17 @@ import { Ace, Range } from "ace-builds";
 import * as AceBuilds from "ace-builds";
 
 import {
-  editorOptions,
-  getAceInstance,
+  IObject,
+  IMarker,
+  IEditorProps,
+  ICommand,
+  IAceEditor,
   IEditorOptions,
   EditorOptionsType,
-} from "@/editorOptions";
+} from "../../../types/ace";
+import { getAceInstance, editorOptions } from "@/utils";
 
 const ace = getAceInstance();
-
-import { IAceEditor, ICommand, IEditorProps, IMarker, IObject } from "@/types";
 
 @Component
 export default class VFAce extends Vue {
