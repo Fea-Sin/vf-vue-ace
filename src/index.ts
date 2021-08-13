@@ -1,6 +1,6 @@
-import VfAce, { VfAceName } from "./ace";
+import Ace, { AceName } from "./ace";
 
-const components = [[VfAceName, VfAce]];
+const components = [[AceName, Ace]];
 
 function install(Vue: any) {
   components.forEach((componentArray) => {
@@ -14,5 +14,5 @@ if (typeof window !== undefined && window.Vue) {
 
 export default {
   install,
-  VfAce,
+  Ace,
 };

@@ -1,8 +1,8 @@
-import VfAce from "./src/index.vue";
-export const VfAceName = "VfAce";
+import Ace from "./src/index.vue";
+export const AceName = "VfAce";
 
-(VfAce as any).install = function (Vue: any) {
-  Vue.component(VfAceName, VfAce);
+(Ace as any).install = function (Vue: any) {
+  Vue.component(AceName, Ace);
 };
 
-export default VfAce;
+export default Ace;

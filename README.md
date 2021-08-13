@@ -8,8 +8,6 @@ vf-ui vue 组件框架
 
 - vue-property-decorator
 
-- vuex-class
-
 ## Project setup
 
 ```bash
