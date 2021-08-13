@@ -1,10 +1,10 @@
-import VfAce from "./ace";
+import VfAce, { VfAceName } from "./ace";
 
-const components = [VfAce];
+const components = [[VfAceName, VfAce]];
 
 function install(Vue: any) {
-  components.forEach((component) => {
-    Vue.component(component.name, component);
+  components.forEach((componentArray) => {
+    Vue.component(componentArray[0], componentArray[1]);
   });
 }
 
