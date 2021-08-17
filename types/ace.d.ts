@@ -56,11 +56,6 @@ export interface IMarker {
   type: "fullLine" | "screenLine" | "text" | Ace.MarkerRenderer;
   inFront?: boolean;
 }
-export interface IEditorOptions {
-  useWorker: boolean;
-  showLineNumbers: boolean;
-  tabSize: number;
-}
 export interface ICommandBindKey {
   win: string;
   mac: string;

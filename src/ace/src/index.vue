@@ -15,7 +15,7 @@ import {
   IEditorOptions,
   EditorOptionsType,
 } from "../../../types/ace";
-import { getAceInstance, editorOptions } from "@/utils";
+import { getAceInstance, editorOptions, isInShadow } from "@/utils";
 
 const ace = getAceInstance();
 
@@ -76,18 +76,6 @@ export default class VFAce extends Vue {
   refEditor!: HTMLElement;
   silent!: boolean;
 
-  isInShadow(node: HTMLElement): boolean {
-    let parent = node && node.parentNode;
-    while (parent) {
-      if (parent.toString() === "[object ShadowRoot]") {
-        return true;
-      }
-      parent = parent.parentNode;
-    }
-
-    return false;
-  }
-
   get divStyle(): Partial<CSSStyleDeclaration> {
     const { width, height, vfStyle } = this;
     return {
@@ -144,7 +132,7 @@ export default class VFAce extends Vue {
       scrollMargin[3]
     );
 
-    if (this.isInShadow(refEditor as HTMLElement)) {
+    if (isInShadow(refEditor as HTMLElement)) {
       this.editor.renderer.attachToShadowRoot();
     }
     if (mode && mode !== "") {

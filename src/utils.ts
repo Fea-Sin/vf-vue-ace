@@ -23,4 +23,15 @@ const editorOptions: EditorOption[] = [
   "enableSnippets",
 ];
 
-export { getAceInstance, editorOptions };
+const isInShadow = (node: HTMLElement): boolean => {
+  let parent = node && node.parentNode;
+  while (parent) {
+    if (parent.toString() === "[object ShadowRoot]") {
+      return true;
+    }
+    parent = parent.parentNode;
+  }
+  return false;
+};
+
+export { getAceInstance, editorOptions, isInShadow };

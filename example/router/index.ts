@@ -17,9 +17,14 @@ const routes: Array<RouteConfig> = [
         component: () => import("../view/home/index.vue"),
       },
       {
-        path: "com",
-        name: "COM",
+        path: "ace",
+        name: "ACE",
         component: () => import("E@/view/com/index.vue"),
+      },
+      {
+        path: "split",
+        name: "SPLIT",
+        component: () => import("E@/view/split/index.vue"),
       },
     ],
   },

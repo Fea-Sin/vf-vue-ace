@@ -192,7 +192,7 @@ export default class Com extends Vue {
   vfModeArray = languages;
   vfThemeArray = themes;
   vfMode = "javascript";
-  vfTheme = "monokai";
+  vfTheme = "solarized_light";
   showPrintMargin = true;
   currentValue = "";
   readOnly = false;
