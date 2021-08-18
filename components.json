@@ -1,4 +1,5 @@
 {
+  "index": "./src/index.ts",
   "vf-ace": "./src/ace/index.ts",
-  "index": "./src/index.ts"
+  "vf-split": "./src/split/index.ts"
 }
