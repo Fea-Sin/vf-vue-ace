@@ -20,19 +20,6 @@ const isEqual = require("lodash.isequal");
 const debounce = require("lodash.debounce");
 
 const ace = getAceInstance();
-const Theme = ["monokai", "solarized_light", "solarized_dark"];
-const Mode = ["javascript", "mysql", "java", "golang"];
-
-import "ace-builds/src-min-noconflict/ext-searchbox";
-import "ace-builds/src-min-noconflict/ext-language_tools";
-// 设置默认配置
-Theme.forEach((theme) => {
-  require(`ace-builds/src-noconflict/theme-${theme}`);
-});
-Mode.forEach((lang) => {
-  require(`ace-builds/src-noconflict/mode-${lang}`);
-  require(`ace-builds/src-noconflict/snippets/${lang}`);
-});
 
 @Component
 export default class VFSplit extends Vue {
@@ -101,8 +88,8 @@ export default class VFSplit extends Vue {
     const {
       className,
       onBeforeLoad,
-      mode,
-      theme,
+      mode = "mysql",
+      theme = "solarized_light",
       focus,
       fontSize = 14,
       value = [],
@@ -130,7 +117,9 @@ export default class VFSplit extends Vue {
     if (isInShadow(refEditor as HTMLElement)) {
       this.editor.renderer.attachToShadowRoot();
     }
-    this.editor.setTheme(`ace/theme/${theme}`);
+    if (theme) {
+      this.editor.setTheme(`ace/theme/${theme}`);
+    }
     if (onBeforeLoad) {
       onBeforeLoad(ace);
     }
@@ -158,14 +147,18 @@ export default class VFSplit extends Vue {
       const defaultValueForEditor = defaultValue[index];
       const valueForEditor = value[index] || "";
       editor.session.setUndoManager(new ace.UndoManager());
-      editor.setTheme(`ace/theme/${theme}`);
+      if (theme) {
+        editor.setTheme(`ace/theme/${theme}`);
+      }
       editor.renderer.setScrollMargin(
         scrollMargin[0],
         scrollMargin[1],
         scrollMargin[2],
         scrollMargin[3]
       );
-      editor.session.setMode(`ace/mode/${mode}`);
+      if (mode) {
+        editor.session.setMode(`ace/mode/${mode}`);
+      }
       editor.setFontSize(`${fontSize}px`);
       editor.renderer.setShowGutter(showGutter);
       editor.session.setUseWrapMode(wrapEnabled);
@@ -274,8 +267,10 @@ export default class VFSplit extends Vue {
   }
   @Watch("theme")
   onThemeChange(val: string) {
-    const split = this.editor.env.split;
-    split.setTheme("ace/theme/" + val);
+    if (val) {
+      const split = this.editor.env.split;
+      split.setTheme("ace/theme/" + val);
+    }
   }
 
   @Watch("className")
@@ -294,10 +289,12 @@ export default class VFSplit extends Vue {
 
   @Watch("mode")
   onModeChange(val: string) {
-    const split = this.editor.env.split;
-    split.forEach((editor: IAceEditor) => {
-      editor.session.setMode("ace/mode/" + val);
-    });
+    if (val) {
+      const split = this.editor.env.split;
+      split.forEach((editor: IAceEditor) => {
+        editor.session.setMode("ace/mode/" + val);
+      });
+    }
   }
   @Watch("keyboardHandler")
   onKeyboardHandlerChange(val: string) {
