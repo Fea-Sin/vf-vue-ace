@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.8 / 2021-08-18
+
+Split take out ace-builds peripheral
+
 ## 1.1.7 / 2021-08-18
 
 Vue Ace Split is done
