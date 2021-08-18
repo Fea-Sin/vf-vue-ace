@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <VFSplit width="100%" />
+    <VFSplit width="100%" height="700px" :fontSize="20" />
   </div>
 </template>
 <script lang="ts">

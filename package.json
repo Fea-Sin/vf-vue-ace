@@ -74,6 +74,8 @@
   "dependencies": {
     "ace-builds": "^1.4.12",
     "diff-match-patch": "^1.0.5",
+    "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2"
   },

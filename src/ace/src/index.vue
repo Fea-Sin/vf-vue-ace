@@ -290,14 +290,16 @@ export default class VFAce extends Vue {
 
   @Watch("className")
   onClassNameChange(val: string, oldVal: string) {
-    const appliedClasses = this.refEditor.className;
+    const { refEditor } = this.$refs;
+    const appliedClasses = (refEditor as HTMLElement).className;
     const appliedClassesArray = appliedClasses.trim().split(" ");
     const oldClassArray = oldVal.trim().split(" ");
     oldClassArray.forEach((oldClass) => {
       const index = appliedClassesArray.indexOf(oldClass);
       appliedClassesArray.splice(index, 1);
     });
-    this.refEditor.className = " " + val + " " + appliedClassesArray.join(" ");
+    (refEditor as HTMLElement).className =
+      " " + val + " " + appliedClassesArray.join(" ");
   }
 
   @Watch("value")
