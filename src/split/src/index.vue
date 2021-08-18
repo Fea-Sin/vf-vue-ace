@@ -20,6 +20,19 @@ const isEqual = require("lodash.isequal");
 const debounce = require("lodash.debounce");
 
 const ace = getAceInstance();
+const Theme = ["monokai", "solarized_light", "solarized_dark"];
+const Mode = ["javascript", "mysql", "java", "golang"];
+
+import "ace-builds/src-min-noconflict/ext-searchbox";
+import "ace-builds/src-min-noconflict/ext-language_tools";
+// 设置默认配置
+Theme.forEach((theme) => {
+  require(`ace-builds/src-noconflict/theme-${theme}`);
+});
+Mode.forEach((lang) => {
+  require(`ace-builds/src-noconflict/mode-${lang}`);
+  require(`ace-builds/src-noconflict/snippets/${lang}`);
+});
 
 @Component
 export default class VFSplit extends Vue {

@@ -1,6 +1,13 @@
 <template>
   <div class="box">
-    <VFSplit width="100%" height="700px" :fontSize="20" />
+    <VFSplit
+      width="100%"
+      height="750px"
+      :fontSize="20"
+      theme="solarized_light"
+      mode="mysql"
+      :splits="3"
+    />
   </div>
 </template>
 <script lang="ts">

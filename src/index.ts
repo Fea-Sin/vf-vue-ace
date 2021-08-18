@@ -1,6 +1,10 @@
 import Ace, { AceName } from "./ace";
+import Split, { SplitName } from "./split";
 
-const components = [[AceName, Ace]];
+const components = [
+  [AceName, Ace],
+  [SplitName, Split],
+];
 
 function install(Vue: any) {
   components.forEach((componentArray) => {
@@ -15,4 +19,5 @@ if (typeof window !== undefined && window.Vue) {
 export default {
   install,
   Ace,
+  Split,
 };

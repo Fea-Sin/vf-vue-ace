@@ -9,7 +9,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     component: Layout,
-    redirect: "home",
+    redirect: "/home",
     children: [
       {
         path: "home",
