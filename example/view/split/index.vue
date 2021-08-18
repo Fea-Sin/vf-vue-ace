@@ -7,6 +7,7 @@
       theme="solarized_light"
       mode="mysql"
       :splits="3"
+      :enableLiveAutocompletion="true"
     />
   </div>
 </template>
