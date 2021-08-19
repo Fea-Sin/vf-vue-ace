@@ -3,13 +3,10 @@
     <VFDiff
       width="100%"
       height="750px"
-      :fontSize="14"
+      :fontSize="20"
       theme="github"
-      :showGutter="true"
-      :readOnly="false"
-      :highlightActiveLine="true"
-      :tabSize="2"
       :value="myValue"
+      :onChange="handleChange"
     />
   </div>
 </template>
@@ -19,7 +16,7 @@ import VFDiff from "@/diff";
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 
-const Theme = ["solarized_light", "github"];
+const Theme = ["solarized_light", "github", "solarized_dark", "monokai"];
 Theme.forEach((theme) => {
   require(`ace-builds/src-noconflict/theme-${theme}`);
 });
@@ -31,15 +28,46 @@ Theme.forEach((theme) => {
 })
 export default class TestDiff extends Vue {
   myValue = [
-    `// Use this tool to display differences in code.
-// Deletions will be highlighted on the left, insertions highlighted on the right.`,
-    `// Use this too to show difference in code.
-// Deletions will be highlighted on the left, insertions highlighted on the right.
-// The diff highlighting style can be altered in CSS.
-`,
+    `
+    /**
+     * 
+     * code diff
+     * 
+     * 所有差别自动检测
+     * 包括空格
+     * 
+     */
+
+    function onLoad(editor) {
+      const value = "hello world";
+      return value;
+    }`,
+    `
+    /**
+     * 
+     * code diff
+     * 
+     * 
+     */
+
+    function onLoad(editor) {
+      const value = "hello world ";
+      return value;
+    }`,
   ];
+
+  handleChange(val: string[]) {
+    this.myValue = val;
+  }
 }
 </script>
+<style>
+.codeMarker {
+  background: #fff677;
+  position: absolute;
+  z-index: 20;
+}
+</style>
 <style lang="less" scoped>
 .box {
   color: #545454;

@@ -29,7 +29,7 @@
       :enableBasicAutocompletion="enableBasicAutocompletion"
       :enableLiveAutocompletion="enableLiveAutocompletion"
       :value="value"
-      :markers="diff"
+      :markers="diffMarkers"
     />
   </div>
 </template>
@@ -76,14 +76,15 @@ export default class VFDiff extends Vue {
   @Prop({ default: () => ["", ""] }) value?: string[];
   @Prop({ default: () => true }) wrapEnabled?: boolean;
 
+  diffMarkers = [[], []];
+
   mounted() {
-    console.log("diff mounted diff--->", this.diff());
-    console.log("======value", this.value);
+    this.diffMarkers = this.diff();
   }
 
   @Watch("value")
-  onValueChange(val: string[]) {
-    console.log("diff is change---->", val);
+  onValueChange() {
+    this.diffMarkers = this.diff();
   }
 
   onChangeVF(value: string[]): void {
@@ -91,14 +92,13 @@ export default class VFDiff extends Vue {
       this.onChange(value);
     }
   }
-  diff(): string[] {
+  diff() {
     const dmp = new DiffMatchPatch();
     const lhString = (this.value as any)[0];
     const rhString = (this.value as any)[1];
     if (lhString.length === 0 && rhString.length === 0) {
       return [];
     }
-
     const diff = dmp.diff_main(lhString, rhString);
     dmp.diff_cleanupSemantic(diff);
 
@@ -125,7 +125,7 @@ export default class VFDiff extends Vue {
     diff.forEach((chunk: any) => {
       const chunkType = chunk[0];
       const text = chunk[1];
-      let lines = text.split("/n").length - 1;
+      let lines = text.split("\n").length - 1;
 
       // diff-match-patch sometimes returns empty strings at random
       if (text.length === 0) {
@@ -143,7 +143,7 @@ export default class VFDiff extends Vue {
           break;
         case C.DIFF_DELETE:
           // If the deletion starts with a newline, push the cursor down to that line
-          if (firstChar === "/n") {
+          if (firstChar === "\n") {
             cursor.left++;
             lines--;
           }
@@ -159,7 +159,7 @@ export default class VFDiff extends Vue {
           }
 
           // If the last character is a newline, we don't want to highlight that line
-          if (lastChar === "/n") {
+          if (lastChar === "\n") {
             linesToHighlight -= 1;
           }
 
@@ -171,7 +171,7 @@ export default class VFDiff extends Vue {
           break;
         case C.DIFF_INSERT:
           // If the insertion starts with a newline, push the cursor down to that line
-          if (firstChar === "/n") {
+          if (firstChar === "\n") {
             cursor.right++;
             lines--;
           }
@@ -185,7 +185,7 @@ export default class VFDiff extends Vue {
           }
 
           // If the last character is a newline, we don't want to highlight that line
-          if (lastChar === "/n") {
+          if (lastChar === "\n") {
             linesToHighlight -= 1;
           }
 
@@ -237,10 +237,3 @@ export default class VFDiff extends Vue {
   }
 }
 </script>
-<style>
-.codeMarker {
-  background: #fff677;
-  position: absolute;
-  z-index: 20;
-}
-</style>
