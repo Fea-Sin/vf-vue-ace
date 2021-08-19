@@ -1,5 +1,7 @@
 import { IObject, IEditorProps } from "./ace";
 
+declare module "diff-match-patch";
+
 export interface IDiffEditorProps {
   cursorStart?: number;
   editorProps?: IObject;
@@ -18,9 +20,9 @@ export interface IDiffEditorProps {
   onLoad?: (editor: IEditorProps) => void;
   onChange?: (value: string[], event?: any) => void;
   onPaste?: (value: string) => void;
-  onScroll?: (editor: string) => void;
+  onScroll?: (editor: IEditorProps) => void;
   orientation?: string;
-  readonly?: boolean;
+  readOnly?: boolean;
   scrollMargin?: number[];
   setOptions?: IObject;
   showGutter?: boolean;
