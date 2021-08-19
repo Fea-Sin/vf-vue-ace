@@ -6,7 +6,7 @@
       :fontSize="20"
       :splits="3"
       :enableLiveAutocompletion="true"
-      theme="solarized_dark"
+      theme="solarized_light"
       mode="mysql"
     />
   </div>

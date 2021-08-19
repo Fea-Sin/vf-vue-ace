@@ -26,6 +26,11 @@ const routes: Array<RouteConfig> = [
         name: "SPLIT",
         component: () => import("E@/view/split/index.vue"),
       },
+      {
+        path: "diff",
+        name: "DIFF",
+        component: () => import("E@/view/diff/index.vue"),
+      },
     ],
   },
 ];

@@ -5,6 +5,7 @@
       <router-link to="/home" class="box">HOME</router-link>
       <router-link to="/ace" class="box">ACE</router-link>
       <router-link to="/split" class="box">SPLIT</router-link>
+      <router-link to="/diff" class="box">DIFF</router-link>
     </div>
     <div class="routeBox">
       <router-view />
