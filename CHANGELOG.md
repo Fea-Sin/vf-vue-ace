@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.9 / 2021-08-20
+
+Vue Ace Diff is done
+
 ## 1.1.8 / 2021-08-18
 
 Split take out ace-builds peripheral

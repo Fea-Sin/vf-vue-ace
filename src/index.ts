@@ -1,9 +1,11 @@
 import Ace, { AceName } from "./ace";
 import Split, { SplitName } from "./split";
+import Diff, { DiffName } from "./diff";
 
 const components = [
   [AceName, Ace],
   [SplitName, Split],
+  [DiffName, Diff],
 ];
 
 function install(Vue: any) {
@@ -20,4 +22,5 @@ export default {
   install,
   Ace,
   Split,
+  Diff,
 };

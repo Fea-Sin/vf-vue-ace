@@ -1,5 +1,6 @@
 {
   "index": "./src/index.ts",
   "vf-ace": "./src/ace/index.ts",
-  "vf-split": "./src/split/index.ts"
+  "vf-split": "./src/split/index.ts",
+  "vf-diff": "./src/diff/index.ts"
 }
