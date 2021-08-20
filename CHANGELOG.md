@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0 / 2021-08-20
+
+Change component install
+
 ## 1.1.9 / 2021-08-20
 
 Vue Ace Diff is done
