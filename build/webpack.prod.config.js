@@ -24,5 +24,8 @@ module.exports = merge(webpackBaseConfig, {
       amd: "vue",
     },
   },
+  optimization: {
+    minimize: false,
+  },
   plugins: [new CleanWebpackPlugin()],
 });
