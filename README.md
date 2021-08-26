@@ -42,8 +42,8 @@ npm install --save ace-builds
 // mian.js
 // 全局安装插件
 import Vue from "vue";
-import VFUI from "vf-vue-ace";
-Vue.use(VFUI);
+import VFACE from "vf-vue-ace";
+Vue.use(VFACE);
 ```
 
 ```html
