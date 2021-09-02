@@ -17,9 +17,9 @@ export class Split extends VfSplit {}
 export class Diff extends VfDiff {}
 
 /**
- * Install all vf-ui components into Vue
+ * Install all vf-ace components into Vue
  * Please do not invoke this method directly
- * Call `Vue.use(VFUI)` to install
+ * Call `Vue.use(VFACE)` to install
  */
 
 export function install(vue: typeof Vue): void;

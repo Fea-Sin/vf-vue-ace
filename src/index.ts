@@ -1,11 +1,11 @@
-import Ace, { AceName } from "./ace";
-import Split, { SplitName } from "./split";
-import Diff, { DiffName } from "./diff";
+import VfAce, { AceName } from "./ace";
+import VfSplit, { SplitName } from "./split";
+import VfDiff, { DiffName } from "./diff";
 
 const components = [
-  [AceName, Ace],
-  [SplitName, Split],
-  [DiffName, Diff],
+  [AceName, VfAce],
+  [SplitName, VfSplit],
+  [DiffName, VfDiff],
 ];
 
 function install(Vue: any) {
@@ -18,9 +18,13 @@ if (typeof window !== undefined && window.Vue) {
   install(window.Vue);
 }
 
+export const Ace = VfAce;
+export const Split = VfSplit;
+export const Diff = VfDiff;
+
 export default {
   install,
-  Ace,
-  Split,
-  Diff,
+  VfAce,
+  VfSplit,
+  VfDiff,
 };

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2 / 2020-09-02
+
+Change build config
+
 ## 1.2.1 / 2021-08-20
 
 Change build config
