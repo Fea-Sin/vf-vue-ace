@@ -62,7 +62,7 @@ export interface ICommandBindKey {
 }
 interface IRenderer extends Ace.VirtualRenderer {
   placeholderNode?: HTMLDivElement;
-  scroller?: HTMLDivElement;
+  scroller?: HTMLDivElement | undefined;
 }
 export type IAceEditor = Ace.Editor & {
   renderer: IRenderer;

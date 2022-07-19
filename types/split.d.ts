@@ -2,8 +2,6 @@ import { Ace } from "ace-builds";
 import { IEditorProps, IEditorOptions, ICommand, IMarker } from "./ace";
 import { VFUIComponent } from "./component";
 
-declare module "lodash.isequal";
-
 export interface ISplitEditorProps {
   name?: string;
   vfStyle?: Partial<CSSStyleDeclaration>;

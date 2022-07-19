@@ -1,8 +1,6 @@
 import { IObject, IEditorProps } from "./ace";
 import { VFUIComponent } from "./component";
 
-declare module "diff-match-patch";
-
 export interface IDiffEditorProps {
   cursorStart?: number;
   editorProps?: IObject;
